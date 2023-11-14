@@ -19,7 +19,9 @@ const writeMongoDBCertificate = (cert) => {
   });
 };
 
-writeMongoDBCertificate(process.env.MONGODB_CERTIFICATE).then(() =>
+writeMongoDBCertificate(
+  Buffer.from(process.env.MONGODB_CERTIFICATE, "base64")
+).then(() =>
   mongoose
     .connect(dbConnectionURL, {
       useNewUrlParser: true,
