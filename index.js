@@ -10,27 +10,24 @@ const dbConnectionURL =
 const writeMongoDBCertificate = (cert) => {
   return new Promise((resolve, reject) => {
     const fs = require("fs");
-    const path = require("path");
-    const tempPath = path.join("/tmp", "certificate.pem");
-
-    fs.writeFile(tempPath, cert, (err) => {
+    fs.writeFile("certificate.pem", cert, (err) => {
       if (err) {
         reject(err);
       }
-      resolve(tempPath);
+      resolve("Certificate saved");
     });
   });
 };
 
 writeMongoDBCertificate(
   Buffer.from(process.env.MONGODB_CERTIFICATE, "base64")
-).then((tempPath) =>
+).then(() =>
   mongoose
     .connect(dbConnectionURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       sslValidate: true,
-      tlsCertificateKeyFile: tempPath,
+      tlsCertificateKeyFile: "certificate.pem",
       authMechanism: "MONGODB-X509",
       authSource: "$external",
     })
