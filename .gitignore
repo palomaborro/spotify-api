@@ -3,6 +3,8 @@
 **/.env
 **/node_modules
 
+certificate.pem
+
 .npmrc
 
 .vscode

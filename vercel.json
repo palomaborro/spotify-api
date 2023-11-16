@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "version": 2,
   "builds": [
     {
@@ -16,4 +17,7 @@
       "dest": "app.js"
     }
   ]
+=======
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+>>>>>>> 9da8334 (Modify Vercel config)
 }
