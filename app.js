@@ -24,13 +24,13 @@ app.use("/", album_routes);
 app.use("/", song_routes);
 
 // Serve static assets (build folder) if in production
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "build")));
 
-//   // Handle React routing, return all requests to React app
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "build", "index.html"));
-//   });
-// }
+  // Handle React routing, return all requests to React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
 
 module.exports = app;
